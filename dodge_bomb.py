@@ -16,7 +16,7 @@ def check_bound(obj_rct):
     引数:こうかとんRect,または爆弾Rect
     戻り値：横方向判定結果、縦方向判定結果（True:画面内/False:画面外）"""
     yoko, tate = True, True
-    if obj_rct.right < 0 or WIDTH < obj_rct.left:
+    if obj_rct.left < 0 or WIDTH < obj_rct.right:
         yoko = False
     if obj_rct.top < 0 or HEIGHT < obj_rct.bottom:
         tate = False
