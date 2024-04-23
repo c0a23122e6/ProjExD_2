@@ -12,7 +12,7 @@ DELTA = {pg.K_UP: (0, -5),
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
-def check_bound(obj_rct):
+def check_bound(obj_rct: pg.Rect) -> tuple[bool, bool]:
     """こうかとんRect、または爆弾Rectの画面内外判定用の関数
     引数:こうかとんRect,または爆弾Rect
     戻り値：横方向判定結果、縦方向判定結果（True:画面内/False:画面外）"""
