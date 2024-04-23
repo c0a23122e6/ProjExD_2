@@ -11,6 +11,7 @@ DELTA = {pg.K_UP: (0, -5),
          pg.K_RIGHT: (5, 0)}
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+
 def check_bound(obj_rct):
     """こうかとんRect、または爆弾Rectの画面内外判定用の関数
     引数:こうかとんRect,または爆弾Rect
@@ -22,16 +23,7 @@ def check_bound(obj_rct):
         tate = False
     return yoko, tate        
 
-"""""
-def game_over():
-    ゲームオーバー画面表示用の関数
-    font = pg.font.Font(None, 300)
-    txt = font.render(str("Game Over"), True, (255, 255, 255))
-    screen.blit(txt, [300, 200])
-    pg.display.update()
-    clock.tick(1/5)
-    return
-"""""
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -51,23 +43,26 @@ def main():
     vy = +5
     font = pg.font.Font(None, 200)
     txt = font.render(str("Game Over"), True, (255, 255, 255))
+    # Game Overを表示
     black = pg.Surface((WIDTH, HEIGHT))
     black.set_alpha(200)
-    ck_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 4.0)
+    # 黒背景を透過
+    ck_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 4.0)# 泣いてるこうかとん参照
     ck_rct = ck_img.get_rect()
     ck_rct.center = 900, 400
-
 
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
-        if kk_rct.colliderect(bd_rct): #工科とんと爆弾がぶつかったらゲームオーバー
+        if kk_rct.colliderect(bd_rct):
+            # 工科とんと爆弾がぶつかったらゲームオーバー
             screen.blit(bg_img, [0, 0])
             screen.blit(black, [0, 0])
             screen.blit(ck_img, ck_rct)
             screen.blit(txt, [500, 200])
             pg.display.update()
+            # 画面を更新
             clock.tick(1/5)
             return
         screen.blit(bg_img, [0, 0]) 
